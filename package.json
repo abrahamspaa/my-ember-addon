@@ -66,5 +66,9 @@
     "hooks": {
       "after:bump": "npx auto-changelog -p"
     }
+  },
+  "volta": {
+    "node": "12.16.3",
+    "yarn": "1.22.4"
   }
 }
