@@ -16,13 +16,15 @@
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
-    "test": "ember try:each"
+    "test": "ember try:each",
+    "release": "dotenv release-it"
   },
   "dependencies": {
     "ember-cli-babel": "^6.6.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
+    "dotenv-cli": "^3.1.0",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.18.2",
     "ember-cli-dependency-checker": "^2.0.0",
@@ -41,12 +43,28 @@
     "ember-source": "~2.18.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
-    "loader.js": "^4.2.3"
+    "loader.js": "^4.2.3",
+    "release-it": "^13.6.1"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "release-it": {
+    "npm": {
+      "publish": false
+    },
+    "git": {
+      "tagName": "v${version}",
+      "changelog": "npx auto-changelog --stdout --commit-limit false -u --template https://raw.githubusercontent.com/release-it/release-it/master/config/changelog-compact.hbs"
+    },
+    "github": {
+      "release": true
+    },
+    "hooks": {
+      "after:bump": "npx auto-changelog -p"
+    }
   }
 }
