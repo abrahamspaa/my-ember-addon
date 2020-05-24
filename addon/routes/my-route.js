@@ -5,7 +5,8 @@ export default Route.extend({
   myService: service(),
   model() {
     return {
-      version: this.get('myService.version')
+      version: this.get('myService.version'),
+      timeStamp: new Date()
     };
   }
 });
